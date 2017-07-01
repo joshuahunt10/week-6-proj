@@ -102,3 +102,14 @@ app.post('/publishPost', function(req, res){
     })
   })
 })
+
+app.post('/deletePost', function(req, res){
+  delButt = req.body.delButt;
+  console.log('value of delButt is', delButt);
+  // models.Post.destroy({
+  //   where:{
+  //     id: req.body.delButt
+  //   }
+  // })
+  res.redirect('/');
+})
