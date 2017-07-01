@@ -20,3 +20,11 @@ app.get('/', function(req, res){
     title: 'Home Page!!'
   });
 })
+
+app.get('/login', function(req, res){
+  res.render('login');
+})
+
+app.get('/newPost', function(req,res){
+  res.render('newPost')
+})
