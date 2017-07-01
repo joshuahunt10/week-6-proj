@@ -27,20 +27,20 @@
     </div>
     <div class="body_wrapper">
       <div class="login_wrapper">
-        <div class="username_entry">
-          <p>Login:</p>
-          <input type="text" class="login_fields" name="" value="" placeholder="Username" autofocus>
-        </div>
-        <div class="password_entry">
-          <p>Password:</p>
-          <input type="password" class="login_fields" name="" value="" placeholder="Password">
-        </div>
-        <div class="login_buttons">
-          <form class="" action="/login" method="post">
-            <button type="button" class="login_button" name="button" >Login</button>
-          </form>
+        <form class="" action="/authenticate" method="post">
+          <div class="username_entry">
+            <p>Login:</p>
+            <input type="text" class="login_fields" name="username" value="" placeholder="Username" autofocus>
+          </div>
+          <div class="password_entry">
+            <p>Password:</p>
+            <input type="password" class="login_fields" name="password" value="" placeholder="Password">
+          </div>
+          <div class="login_buttons">
+            <button type="submit" class="login_button" name="button" >Login</button>
+        </form>
           <form class="" action="/signUp" method="post">
-            <button type="button" class="login_button" name="button">Sign Up!</button>
+            <button type="submit" class="login_button" name="button">Sign Up!</button>
           </form>
         </div>
       </div>
