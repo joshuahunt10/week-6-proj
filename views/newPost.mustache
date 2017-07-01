@@ -15,7 +15,12 @@
           <a href="/newPost">Create New Post</a>
         </div>
         <div class="links">
-          <a href="/login">Logged in as Guest</a>
+          {{#user}}
+          <a href="/fixme/profilepage">Logged in as {{user}}</a>
+          {{/user}}
+          {{^user}}
+          <a href="/login">Log in</a>
+          {{/user}}
         </div>
         <div class="links">
           <a href="/fixLink">Log Out</a>
@@ -27,17 +32,17 @@
     </div>
     <div class="body_wrapper">
       <div class="entry_wrapper">
-        <div class="entry_title">
-          <h2>Title:</h2>
-          <input type="text" name="" value="" placeholder="What's this about?">
-        </div>
-        <div class="entry_body">
-          <h2>What's on your mind?</h2>
-          <textarea name="entry" rows="4" cols="40"></textarea>
-        </div>
-        <div class="entry_buttons">
-          <form class="post" action="/fixme" method="post">
-            <button type="button" name="button">Post!</button>
+        <form class="post" action="/publishPost" method="post">
+          <div class="entry_title">
+            <h2>Title:</h2>
+            <input type="text" name="entryTitle" value="" placeholder="What's this about?">
+          </div>
+          <div class="entry_body">
+            <h2>What's on your mind?</h2>
+            <textarea name="entry" rows="4" cols="40"></textarea>
+          </div>
+          <div class="entry_buttons">
+              <button type="submit" name="button">Post!</button>
           </form>
         </div>
     </div>

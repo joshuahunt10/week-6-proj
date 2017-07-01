@@ -15,7 +15,12 @@
           <a href="/newPost">Create New Post</a>
         </div>
         <div class="links">
-          <a href="/login">Logged in as {{user}}</a>
+          {{#user}}
+          <a href="/fixme/profilepage">Logged in as {{user}}</a>
+          {{/user}}
+          {{^user}}
+          <a href="/login">Log in</a>
+          {{/user}}
         </div>
         <div class="links">
           <a href="/fixLink">Log Out</a>
