@@ -5,12 +5,14 @@ const models = require("./models")
 const bodyparser = require("body-parser");
 const faker = require("faker")
 const session = require('express-session');
+const expressValidator = require('express-validator')
 
 
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 app.use(express.static('public'));
 app.use(bodyparser.urlencoded({extended: false}))
+app.use(expressValidator());
 
 app.listen(3000, function(){
   console.log('I created Facebook in a week');
@@ -21,6 +23,23 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+app.get('/signup', function(req,res){
+  res.render('signup')
+})
+
+app.post('/signup', function(req, res){
+  let username = req.body.username;
+  let password = req.body.password;
+
+  const signup = models.Username.build({
+    username: username,
+    password: password
+  })
+  signup.save().then(function(){
+    res.redirect('/login');
+  })
+})
 
 // var user = models.Username.build({
 //   username: 'josh',
@@ -103,13 +122,13 @@ app.post('/publishPost', function(req, res){
   })
 })
 
-app.post('/deletePost', function(req, res){
-  delButt = req.body.delButt;
-  console.log('value of delButt is', delButt);
-  // models.Post.destroy({
-  //   where:{
-  //     id: req.body.delButt
-  //   }
-  // })
+// FIXME: The confirm on delete is not working
+app.post('/:id/deletePost', function(req, res){
+  id = req.body.delButt;
+  models.Post.destroy({
+    where:{
+      id: id
+    }
+  })
   res.redirect('/');
 })
