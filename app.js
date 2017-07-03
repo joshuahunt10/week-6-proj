@@ -30,19 +30,23 @@ app.get('/signUp', function(req,res){
 
 app.post('/signUp', function(req, res){
   res.render('signup')
-  // TODO: move this to another post from the signup page
-//   let username = req.body.username;
-//   let password = req.body.password;
-//
-//   // res.render('signUp')
-//
-//   const signup = models.Username.build({
-//     username: username,
-//     password: password
-//   })
-//   signup.save().then(function(){
-//     res.redirect('/login');
-//   })
+})
+
+app.post('/registerToDB', function(req, res){
+    let username = req.body.username;
+    let password = req.body.password;
+    let passwordConf = req.body.passwordTwo;
+
+    // res.render('signUp')
+
+    const signup = models.Username.build({
+      username: username,
+      password: password
+    })
+    signup.save().then(function(){
+      res.redirect('/login');
+    })
+
 })
 
 // var user = models.Username.build({

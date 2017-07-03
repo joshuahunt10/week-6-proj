@@ -31,18 +31,22 @@
       </div>
     </div>
     <div class="body_wrapper">
+      <h2>Sign Up!</h2>
       <div class="login_wrapper">
-        <form class="" action="/authenticate" method="post">
+        <form class="" action="/registerToDB" method="post">
           <div class="username_entry">
-            <p>Login:</p>
+            <p>Chose a Username:</p>
             <input type="text" class="login_fields" name="username" value="" placeholder="Username" autofocus>
           </div>
           <div class="password_entry">
             <p>Password:</p>
             <input type="password" class="login_fields" name="password" value="" placeholder="Password">
           </div>
-        </form>
-          <form class="" action="/signup" method="post">
+          <div class="password_entry">
+            <p>Re-Enter Your Password:</p>
+            <input type="password" class="login_fields" name="passwordTwo" value="" placeholder="Re-Enter Your Password">
+          </div>
+
             <button type="submit" class="login_button" name="button">Sign Up!</button>
           </form>
         </div>

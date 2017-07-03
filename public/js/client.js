@@ -20,17 +20,16 @@ if(deletePost){
 }
 
 
-// FIXME: moment is not defined??
+
 var allLongDate = document.querySelectorAll('.publishDateLong');
 console.log('the array of long dates', allLongDate);
 
 if(allLongDate){
   for (var i = 0; i < allLongDate.length; i++) {
-    console.log('looping over long dates', allLongDate[i].textContent);
+     allLongDate[i].textContent);
     let longDate = allLongDate[i].textContent;
     if(longDate.length > 0){
       let modDate = moment(longDate);
-      console.log('modDate', modDate);
       allLongDate[i].textContent = modDate.format("LLLL");
     }
   }
