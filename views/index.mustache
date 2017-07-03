@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
     <title>{{title}}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   </head>
   <body>
     <div class="top-bar">
@@ -45,7 +46,7 @@
           <span>{{body}}</span>
         </div>
         <div class="bot_line">
-          <span class="publish_date">Published: 06/30/2017 12:24</span>
+          <span class="publish_date">Published:</span> <span class="publishDateLong">{{createdAt}}</span>
           <form class="delForm" action="/{{id}}/deletePost" method="post">
             <button type="submit" name="delButt" value='{{id}}'>Delete</button>
             <!-- <input type="submit" name="" value="Delete"> -->
@@ -56,5 +57,6 @@
   </div>
 
     <script src="/js/client.js" charset="utf-8"></script>
+
   </body>
 </html>

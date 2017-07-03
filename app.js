@@ -21,24 +21,28 @@ app.listen(3000, function(){
 app.use(session({
   secret: 'puppers',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }));
 
-app.get('/signup', function(req,res){
+app.get('/signUp', function(req,res){
   res.render('signup')
 })
 
-app.post('/signup', function(req, res){
-  let username = req.body.username;
-  let password = req.body.password;
-
-  const signup = models.Username.build({
-    username: username,
-    password: password
-  })
-  signup.save().then(function(){
-    res.redirect('/login');
-  })
+app.post('/signUp', function(req, res){
+  res.render('signup')
+  // TODO: move this to another post from the signup page
+//   let username = req.body.username;
+//   let password = req.body.password;
+//
+//   // res.render('signUp')
+//
+//   const signup = models.Username.build({
+//     username: username,
+//     password: password
+//   })
+//   signup.save().then(function(){
+//     res.redirect('/login');
+//   })
 })
 
 // var user = models.Username.build({
@@ -63,6 +67,7 @@ app.post('/authenticate', function(req, res){
     }
     if(user){
       req.session.user = userQuery.username;
+      req.session.userID = userQuery.id;
       console.log('logging the session', req.session.user);
       res.redirect("/")
     }else{
@@ -122,7 +127,6 @@ app.post('/publishPost', function(req, res){
   })
 })
 
-// FIXME: The confirm on delete is not working
 app.post('/:id/deletePost', function(req, res){
   id = req.body.delButt;
   models.Post.destroy({
