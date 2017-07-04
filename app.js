@@ -37,14 +37,25 @@ app.post('/registerToDB', function(req, res){
     let password = req.body.password;
     let passwordConf = req.body.passwordTwo;
 
-    // res.render('signUp')
+    req.checkBody('password', 'Your passswords must match').equals(passwordConf);
+    req.checkBody('username', 'You must provide a username').notEmpty();
+    req.checkBody('username', 'Your username must be at least 3 characters').len(3, 10);
+    req.checkBody('username', 'Your username may only contain letters').isAlpha();
 
+    var errors = req.validationErrors();
+
+    if(errors){
+      res.render('signup', {
+        errors: errors,
+        username: username
+      })
+    }
     const signup = models.Username.build({
       username: username,
       password: password
     })
     signup.save().then(function(){
-      res.redirect('/login');
+      return res.redirect('/login');
     })
 
 })
@@ -143,8 +154,15 @@ app.post('/publishPost', function(req, res){
       body: req.body.entry,
       user: userQuery.id
     })
-    newPost.save().then(function(){
+    newPost.save()
+    .then(function(){
       res.redirect('/');
+    })
+    .catch(function(bigError){
+      res.render('newPost', {
+        post: newPost,
+        error: bigError.errors
+      })
     })
   })
 })

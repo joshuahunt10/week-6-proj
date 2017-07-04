@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/master.css">
-    <title>{{title}}</title>
-  </head>
-  <body>
-    <div class="top-bar">
-      <div class="links-wrapper">
-        <div class="links">
-          <a href="/">Home</a>
-        </div>
-        <div class="links">
-          <a href="/newPost">Create New Post</a>
-        </div>
-        <div class="links">
-          {{#user}}
-          <a href="/fixme/profilepage">Logged in as {{user}}</a>
-          {{/user}}
-          {{^user}}
-          <a href="/login">Log in</a>
-          {{/user}}
-        </div>
-        <div class="links">
-          <a href="/logout">Log Out</a>
-        </div>
-      </div>
-      <div class="title">
-        <h2>Gabble</h2>
-      </div>
-    </div>
-    <div class="body_wrapper">
-      <div class="entry_wrapper">
-        <form class="post" action="/publishPost" method="post">
-          <div class="entry_title">
-            <h2>Title:</h2>
-            <input type="text" name="entryTitle" value="" placeholder="What's this about?">
-          </div>
-          <div class="entry_body">
-            <h2>What's on your mind?</h2>
-            <textarea name="entry" rows="4" cols="40"></textarea>
-          </div>
-          <div class="entry_buttons">
-              <button type="submit" name="button">Post!</button>
-          </form>
-        </div>
-    </div>
 
-    <script src="/js/client.js" charset="utf-8"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/master.css">
+  <title>{{title}}</title>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="links-wrapper">
+      <div class="links">
+        <a href="/">Home</a>
+      </div>
+      <div class="links">
+        <a href="/newPost">Create New Post</a>
+      </div>
+      <div class="links">
+        {{#user}}
+          <a href="/fixme/profilepage">Logged in as {{user}}</a>
+        {{/user}}
+        {{^user}}
+        <a href="/login">Log in</a>
+        {{/user}}
+      </div>
+      <div class="links">
+        <a href="/logout">Log Out</a>
+      </div>
+    </div>
+    <div class="title">
+      <h2>Gabble</h2>
+    </div>
+  </div>
+  <div class="body_wrapper">
+    <div class="entry_wrapper">
+      {{#error}}
+      <ul>
+        <li>{{message}}</li>
+      </ul>
+      {{/error}}
+      <form class="post" action="/publishPost" method="post">
+        <div class="entry_title">
+          <h2>Title:</h2>
+          <input type="text" name="entryTitle" value="{{post.title}}" placeholder="What's this about?">
+        </div>
+        <div class="entry_body">
+          <h2>What's on your mind?</h2>
+          <textarea name="entry" rows="4" cols="40">{{post.body}}</textarea>
+        </div>
+        <div class="entry_buttons">
+          <button type="submit" name="button">Post!</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/client.js" charset="utf-8"></script>
+</body>
+
 </html>
