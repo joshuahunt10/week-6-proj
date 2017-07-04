@@ -119,6 +119,11 @@ app.get('/newPost', function(req,res){
   })
 })
 
+app.get('/logout', function(req, res){
+  req.session.destroy();
+  res.render('logout')
+})
+
 app.post('/publishPost', function(req, res){
   models.Username.findOne({
     where:{

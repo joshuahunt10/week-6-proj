@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
     <title>{{title}}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   </head>
   <body>
     <div class="top-bar">
@@ -23,36 +24,24 @@
           {{/user}}
         </div>
         <div class="links">
-          <a href="logout">Log Out</a>
+          <a href="/logout">Log Out</a>
         </div>
       </div>
       <div class="title">
         <h2>Gabble</h2>
       </div>
     </div>
-    <div class="body_wrapper">
-      <h2>Sign Up!</h2>
-      <div class="login_wrapper">
-        <form class="" action="/registerToDB" method="post">
-          <div class="username_entry">
-            <p>Chose a Username:</p>
-            <input type="text" class="login_fields" name="username" value="" placeholder="Username" autofocus>
-          </div>
-          <div class="password_entry">
-            <p>Password:</p>
-            <input type="password" class="login_fields" name="password" value="" placeholder="Password">
-          </div>
-          <div class="password_entry">
-            <p>Re-Enter Your Password:</p>
-            <input type="password" class="login_fields" name="passwordTwo" value="" placeholder="Re-Enter Your Password">
-          </div>
 
-            <button type="submit" class="login_button" name="button">Sign Up!</button>
-          </form>
-        </div>
+    <div class="body_wrapper">
+      <div class="login_wrapper">
+          <div class="username_entry">
+            <p>You have successfully logged out</p>
+            <a href="/"><small>Return Home</small></a>
+          </div>
       </div>
     </div>
 
     <script src="/js/client.js" charset="utf-8"></script>
+
   </body>
 </html>
