@@ -73,6 +73,7 @@ app.post('/authenticate', function(req, res){
       req.session.user = userQuery.username;
       req.session.userID = userQuery.id;
       console.log('logging the session', req.session.user);
+      console.log('logging the session userID', req.session.userID);
       res.redirect("/")
     }else{
       res.render('loginerror');
@@ -91,10 +92,17 @@ app.get('/', function(req, res){
     }
   ]
   }).then(function(posts){
+    models.Username.findOne({
+      where:{
+        username: req.session.user
+      }
+    }).then(function(username){
       res.render('index', {
         title: 'Home Page!!',
         user: req.session.user,
-        posts: posts
+        posts: posts,
+        username: username
+      })
     })
   })
 })
@@ -149,4 +157,35 @@ app.post('/:id/deletePost', function(req, res){
     }
   })
   res.redirect('/');
+})
+
+app.get('/:id/profilepage', function(req, res){
+  id = parseInt(req.body.id);
+  models.Post.findAll({
+    where:{
+      user: req.session.userID
+    },
+    order:[
+      ['createdAt', 'DESC']
+    ],
+    include: [
+      {
+        model: models.Username
+      }
+    ]
+  }).then(function(posts){
+    console.log('posts from the profile page', posts);
+    models.Username.findOne({
+      where:{
+        username: req.session.user
+      }
+    }).then(function(username){
+      res.render('profilePage', {
+        title: 'Profile Page',
+        user: req.session.user,
+        posts: posts,
+        username: username
+      })
+    })
+  })
 })

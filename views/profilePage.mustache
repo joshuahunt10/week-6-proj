@@ -19,7 +19,7 @@
       </div>
       <div class="links">
         {{#user}}
-          <a href="/{{username.id}}/profilepage">Logged in as {{user}}</a>
+          <a href="/{{posts.id}}/profilepage">Logged in as {{user}}</a>
         {{/user}}
         {{^user}}
         <a href="/login">Log in</a>
@@ -35,6 +35,7 @@
   </div>
 
   <div class="body_wrapper">
+    <h1>Welcome to your profile page, <span class="cap_username">{{user}}</span> </h1>
     {{#posts}}
       <div class="post_wrapper">
         <div class="top_line">
@@ -56,6 +57,7 @@
       </div>
     {{/posts}}
   </div>
+
 
   <script src="/js/client.js" charset="utf-8"></script>
 

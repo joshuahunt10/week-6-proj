@@ -4,6 +4,10 @@ body{
   background-color: rgba(146, 201, 177, 1);
 }
 
+.cap_username{
+  text-transform: capitalize;
+}
+
 .links-wrapper{
   display: flex;
   justify-content: space-between;
