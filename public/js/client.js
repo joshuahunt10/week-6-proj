@@ -26,7 +26,7 @@ console.log('the array of long dates', allLongDate);
 
 if(allLongDate){
   for (var i = 0; i < allLongDate.length; i++) {
-     allLongDate[i].textContent);
+     allLongDate[i].textContent;
     let longDate = allLongDate[i].textContent;
     if(longDate.length > 0){
       let modDate = moment(longDate);

@@ -84,7 +84,12 @@ app.get('/', function(req, res){
   models.Post.findAll({
     order:[
       ['createdAt', 'DESC']
-    ]
+    ],
+  include: [
+    {
+      model: models.Username
+    }
+  ]
   }).then(function(posts){
       res.render('index', {
         title: 'Home Page!!',
