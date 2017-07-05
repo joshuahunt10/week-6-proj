@@ -5,12 +5,12 @@
     <title>{{title}}</title>
   </head>
   <body>
-    <p>This is the page after you liked a post.</p>
+    {{#likes}}
+    <p>This is the page after you liked a post. The title of the post you liked was: {{post.title}}</p>
     <p>The users that have liked this post</p>
-    {{#user}}
     <ul>
-      <li>{{username}}</li>
+      <li>{{user.username}}</li>
     </ul>
-    {{/user}}
+    {{/likes}}
   </body>
 </html>

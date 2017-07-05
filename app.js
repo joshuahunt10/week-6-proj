@@ -227,18 +227,27 @@ app.post('/:id/likePost', function(req, res){
   })
 })
 
-//// FIXME: ensure the likes table is linked together correctly.  The like is working but now we work on displaying the names of those who liked it.
+//// FIXME: format the postLikes page and stop the render of a likes page, just redirect
 
 app.get('/:postID/postLikes', function(req, res){
   let postID = req.params.postID;
   models.Like.findAll({
     where:{
       postID: postID
-    }
+    },
+    include: [
+      {
+        model: models.Username,
+        as: 'user'
+      },
+      {
+        model: models.Post,
+        as: 'post'
+      }
+    ]
   }).then(function(likes){
-    console.log('logging the likes return', likes);
     res.render('postLike', {
-      user: likes
+      likes: likes
     })
   })
 })
