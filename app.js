@@ -25,11 +25,15 @@ app.use(session({
 }));
 
 app.get('/signUp', function(req,res){
-  res.render('signup')
+  res.render('signup', {
+    title: "Sign Up!"
+  })
 })
 
 app.post('/signUp', function(req, res){
-  res.render('signup')
+  res.render('signup', {
+    title: "Sign Up!"
+  })
 })
 
 app.post('/registerToDB', function(req, res){
@@ -47,7 +51,8 @@ app.post('/registerToDB', function(req, res){
     if(errors){
       res.render('signup', {
         errors: errors,
-        username: username
+        username: username,
+        title: "Oops try again!"
       })
     }
     const signup = models.Username.build({
@@ -60,11 +65,6 @@ app.post('/registerToDB', function(req, res){
 
 })
 
-// var user = models.Username.build({
-//   username: 'josh',
-//   password: '123'
-// })
-// user.save();
 app.post('/authenticate', function(req, res){
   let user = false;
   username = req.body.username;
@@ -87,7 +87,9 @@ app.post('/authenticate', function(req, res){
       console.log('logging the session userID', req.session.userID);
       res.redirect("/")
     }else{
-      res.render('loginerror');
+      res.render('loginerror', {
+        title: "Login Error!"
+      });
     }
   })
 })
@@ -104,18 +106,12 @@ app.get('/', function(req, res){
     }
   ]
 }).then(function(posts){
-    console.log('This is the query for posts', posts);
-    models.Username.findOne({
-      where:{
-        username: req.session.user
-      }
-    }).then(function(username){
-      res.render('index', {
-        title: 'Home Page!!',
-        user: req.session.user,
-        posts: posts,
-        username: username
-      })
+  console.log('user id', req.session.userID);
+    res.render('index', {
+      title: 'Home Page!!',
+      user: req.session.user,
+      posts: posts,
+      userID: req.session.userID
     })
   })
 })
@@ -142,7 +138,9 @@ app.get('/newPost', function(req,res){
 
 app.get('/logout', function(req, res){
   req.session.destroy();
-  res.render('logout')
+  res.render('logout', {
+    title: 'Come on Back!'
+  })
 })
 
 app.post('/publishPost', function(req, res){
@@ -163,7 +161,10 @@ app.post('/publishPost', function(req, res){
     .catch(function(bigError){
       res.render('newPost', {
         post: newPost,
-        error: bigError.errors
+        error: bigError.errors,
+        user: req.session.user,
+        userID: req.session.userID,
+        title: "Uh-Oh"
       })
     })
   })
@@ -183,18 +184,19 @@ app.get('/:id/profilepage', function(req, res){
   id = parseInt(req.body.id);
   models.Post.findAll({
     where:{
-      user: req.session.userID
+      userID: req.session.userID
     },
     order:[
       ['createdAt', 'DESC']
     ],
     include: [
       {
-        model: models.Username
+        model: models.Username,
+        as: 'username'
       }
     ]
   }).then(function(posts){
-    console.log('posts from the profile page', posts);
+    console.log('posts from the profile page', posts[0].username.username);
     models.Username.findOne({
       where:{
         username: req.session.user
@@ -209,6 +211,8 @@ app.get('/:id/profilepage', function(req, res){
     })
   })
 })
+
+// TODO: This is a work in progress
 
 app.post('/:id/likePost', function(req, res){
   let userID = req.session.userID;

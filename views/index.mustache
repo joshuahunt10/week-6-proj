@@ -19,7 +19,7 @@
       </div>
       <div class="links">
         {{#user}}
-          <a href="/{{username.id}}/profilepage">Logged in as {{user}}</a>
+          <a href="/{{userID}}/profilepage">Logged in as {{user}}</a>
         {{/user}}
         {{^user}}
         <a href="/login">Log in</a>
@@ -45,7 +45,7 @@
           <a href="/{{id}}/postLikes">Link to Likes</a>
         </div>
         <div class="username">
-          <span class="author">By:   {{Username.username}}</span>
+          <span class="author">By:   {{username.username}}</span>
         </div>
         <div class="message">
           <span>{{body}}</span>

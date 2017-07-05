@@ -18,7 +18,6 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    // user: DataTypes.INTEGER
   }, {});
 
   Post.associate = function(models){
