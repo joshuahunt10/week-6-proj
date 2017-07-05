@@ -18,12 +18,12 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    user: DataTypes.INTEGER
+    // user: DataTypes.INTEGER
   }, {});
 
   Post.associate = function(models){
-    Post.belongsTo(models.Username, {foreignKey: 'user'})
-    Post.hasMany(models.Like, {foreignKey: 'id'})
+    Post.belongsTo(models.Username, {as: 'username', foreignKey: 'userID'})
+    // Post.hasMany(models.Like, {foreignKey: 'id'})
   }
 
   return Post;

@@ -99,10 +99,12 @@ app.get('/', function(req, res){
     ],
   include: [
     {
-      model: models.Username
+      model: models.Username,
+      as: 'username'
     }
   ]
-  }).then(function(posts){
+}).then(function(posts){
+    console.log('This is the query for posts', posts);
     models.Username.findOne({
       where:{
         username: req.session.user
@@ -152,7 +154,7 @@ app.post('/publishPost', function(req, res){
     var newPost = models.Post.build({
       title: req.body.entryTitle,
       body: req.body.entry,
-      user: userQuery.id
+      userID: userQuery.id
     })
     newPost.save()
     .then(function(){
