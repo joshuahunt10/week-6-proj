@@ -23,6 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Post.associate = function(models){
     Post.belongsTo(models.Username, {foreignKey: 'user'})
+    Post.hasMany(models.Like, {foreignKey: 'id'})
   }
 
   return Post;

@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Username.associate = function(models){
     Username.hasMany(models.Post, {foreignKey: 'user'})
+    Username.hasMany(models.Like, {foreignKey: 'id'})
   }
 
   return Username;
