@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/css/master.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 </head>
 
 <body>
@@ -35,47 +36,30 @@
   <div class="body_wrapper">
       <div class="post_wrapper">
         <div class="top_line">
-          {{#likes}}
           <span class="post_title">{{post.title}}</span>
         </div>
         <div class="username">
-          <span class="author">By:   {{user.username}}</span>
+          <span class="author">By:   {{post.username.username}}</span>
         </div>
         <div class="message">
           <span>{{post.body}}</span>
         </div>
         <div class="bot_line">
           <span class="publish_date">Published: <span class="publishDateLong">{{post.createdAt}}</span></span><br />
-          {{/likes}}
         </div>
+
         <div class="like_list">
           Liked by:
-          {{#likes}}
           <ul>
+            {{#likes}}
             <li>{{user.username}}</li>
+            {{/likes}}
           </ul>
-          {{/likes}}
         </div>
       </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-  <!-- {{#likes}}
-    <p>This is the page after you liked a post. The title of the post you liked was: {{post.title}}</p>
-    <p>The users that have liked this post</p>
-    <ul>
-      <li>{{user.username}}</li>
-    </ul>
-  {{/likes}} -->
+<script src="/js/client.js" charset="utf-8"></script>
 </body>
 
 </html>

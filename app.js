@@ -216,20 +216,36 @@ app.post('/:id/likePost', function(req, res) {
 
 app.get('/:postID/postLikes', function(req, res) {
   let postID = req.params.postID;
-  models.Like.findAll({
-    where: {
-      postID: postID
+  console.log(postID);
+  models.Post.findOne({
+    where:{
+      id: postID
     },
     include: [
       {
         model: models.Username,
-        as: 'user'
-      }, {
-        model: models.Post,
-        as: 'post'
+        as: 'username'
       }
     ]
-  }).then(function(likes) {
-    res.render('postLike', {likes: likes})
+  }).then(function(post){
+    models.Like.findAll({
+      where: {
+        postID: postID
+      },
+      include: [
+        {
+          model: models.Username,
+          as: 'user'
+        }, {
+          model: models.Post,
+          as: 'post'
+        }
+      ]
+    }).then(function(likes) {
+      res.render('postLike', {
+        likes: likes,
+        post: post
+      })
+    })
   })
 })
