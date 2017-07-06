@@ -31,6 +31,7 @@
       </div>
     </div>
     <div class="body_wrapper">
+      <div class="signUp_wrapper">
       <h2>Sign Up!</h2>
       {{#errors}}
       <ul>
@@ -38,19 +39,18 @@
       </ul>
       {{/errors}}
 
-      <div class="login_wrapper">
         <form class="" action="/registerToDB" method="post">
           <div class="username_entry">
             <p>Chose a Username:</p>
-            <input type="text" class="login_fields" name="username" value="{{username}}" placeholder="Username" autofocus>
+            <input type="text" class="signUp_fields" name="username" value="{{username}}" placeholder="Username" autofocus>
           </div>
           <div class="password_entry">
             <p>Password:</p>
-            <input type="password" class="login_fields" name="password" value="" placeholder="Password">
+            <input type="password" class="signUp_fields" name="password" value="" placeholder="Password">
           </div>
           <div class="password_entry">
             <p>Re-Enter Your Password:</p>
-            <input type="password" class="login_fields" name="passwordTwo" value="" placeholder="Confirm Password">
+            <input type="password" class="signUp_fields" name="passwordTwo" value="" placeholder="Confirm Password">
           </div>
 
             <button type="submit" class="login_button" name="button">Sign Up!</button>
